@@ -1,15 +1,15 @@
 package com.arusarka.gfg.kt.ds
 
-import org.junit.jupiter.api.*
-import kotlin.test.assertEquals
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.platform.runner.JUnitPlatform
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.junit.jupiter.MockitoExtension
-import org.mockito.junit.jupiter.MockitoSettings
-import org.mockito.quality.Strictness
+import kotlin.test.assertEquals
 
 @ExtendWith(MockitoExtension::class)
 @RunWith(JUnitPlatform::class)
@@ -50,6 +50,5 @@ class TreeTest {
             Mockito.verify(leftTreeMock).height()
             Mockito.verify(rightTreeMock).height()
         }
-
     }
 }
