@@ -26,3 +26,5 @@ hs_err_pid*
 # my additions to gitignore
 .gradle
 .idea
+build
+out
