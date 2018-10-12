@@ -51,7 +51,7 @@ class TicTacToeBoardTest {
         ticTacToeBoard.setCoordinate(Cell.CellState.X, coordinate, game)
 
         Mockito.verify(grid).pathsWithCoordinate(coordinate)
-        Mockito.verify(game).onWin(Cell.CellState.X)
+        Mockito.verify(game).onWin()
         assertFalse(ticTacToeBoard.isStillOpen())
     }
 }

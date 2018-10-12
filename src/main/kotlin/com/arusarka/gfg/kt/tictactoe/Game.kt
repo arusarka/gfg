@@ -1,31 +1,32 @@
 package com.arusarka.gfg.kt.tictactoe
 
-import kotlin.system.exitProcess
-
 class Game(private val board: TicTacToeBoard, players: List<Player>) {
-    val player1 = players.first()
-    val player2 = players[1]
+    private var firstTime: Boolean = true
+    private val player1 = players.first()
+    private val player2 = players[1]
 
     private var currentPlayer: Player = player1
 
     fun start() {
-        println(board.toString())
         while (board.isStillOpen()) {
+            if (!firstTime)
+                println("\n================\n")
+            println(board.toString())
             val nextMove = currentPlayer.getNextMove(board.grid)
             board.setCoordinate(currentPlayer.state, nextMove, this)
-            println("\n================")
-            println(board.toString())
+            if (firstTime) firstTime = false
             swapPlayers()
         }
     }
 
-    fun onWin(cellState: Cell.CellState) {
-        println("${currentPlayer.name} (${currentPlayer.state}) has won")
-
+    fun onWin() {
+        println("\n================\n")
+        println(board.toString())
+        println("\n${currentPlayer.name} (${currentPlayer.state}) has(have) won")
     }
 
     private fun swapPlayers() {
-        if (currentPlayer == player1) currentPlayer = player2 else currentPlayer = player1
+        currentPlayer = if (currentPlayer == player1) player2 else player1
     }
 }
 

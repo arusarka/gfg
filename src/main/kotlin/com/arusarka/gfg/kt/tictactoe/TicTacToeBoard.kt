@@ -18,7 +18,7 @@ class TicTacToeBoard(val grid: Grid) {
 
         if (pathsWithCoordinate.any { it.allCellsHaveState(cellState) }) {
             winningMoveMade = true
-            game.onWin(cellState)
+            game.onWin()
         }
     }
 }

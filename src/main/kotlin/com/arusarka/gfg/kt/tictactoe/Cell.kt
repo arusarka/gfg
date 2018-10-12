@@ -22,7 +22,6 @@ class Cell(val position: Coordinate, var state: CellState) {
             override fun toString(): String {
                 return " "
             }
-
         },
 
         O {
@@ -31,8 +30,6 @@ class Cell(val position: Coordinate, var state: CellState) {
             override fun toString(): String {
                 return "O"
             }
-
-
         },
 
         X {
@@ -41,7 +38,6 @@ class Cell(val position: Coordinate, var state: CellState) {
             override fun toString(): String {
                 return "X"
             }
-
         };
 
         abstract val isEmpty: Boolean

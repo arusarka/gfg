@@ -22,9 +22,6 @@ class GridTest {
 
     lateinit var grid: Grid
 
-    @Mock
-    lateinit var board: TicTacToeBoard
-
     @BeforeEach
     internal fun setUp() {
         grid = Grid(
@@ -53,5 +50,10 @@ class GridTest {
         grid.setCellState(Coordinate(0, 1), X)
 
         assertSame(X, grid[0, 1].state)
+    }
+
+    @Test
+    fun `should be able to validate a move`() {
+        grid.isValidMove(Coordinate(0, 0))
     }
 }

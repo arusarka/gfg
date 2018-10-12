@@ -5,7 +5,7 @@ import com.arusarka.gfg.kt.tictactoe.Cell.CellState.*
 
 class ComputerPlayer : Player{
     override val name: String
-        get() = "I"
+        get() = "Computer"
 
     override val state: Cell.CellState = O
 

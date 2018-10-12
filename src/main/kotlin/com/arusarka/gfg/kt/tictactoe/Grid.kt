@@ -37,4 +37,6 @@ class Grid(cells: List<List<Cell>>) {
         val cell = rows[coordinate.x, coordinate.y]
         cell.state = cellState
     }
+
+    fun isValidMove(coordinate: Coordinate): Boolean = rows[coordinate.x, coordinate.y].isEmpty()
 }
