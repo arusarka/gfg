@@ -2,7 +2,9 @@ package com.arusarka.gfg.kt.tictactoe
 
 import java.util.*
 
-class HumanPlayer : Player {
+class HumanPlayer(private val console: Console) : Player {
+    constructor() : this(Console())
+
     private var firstTimeMove = true
 
     override val name: String
@@ -20,14 +22,13 @@ class HumanPlayer : Player {
     private fun getCoordinate(): Coordinate {
         val scanner = Scanner(System.`in`)
         if (firstTimeMove) {
-            print("\nEnter coordinate for X in the format x,y (with the comma in between 1,1 is the top left corner and 3,3 is the bottom right corner) : ")
+            console.write("\nEnter coordinate for X in the format x,y (with the comma in between 1,1 is the top left corner and 3,3 is the bottom right corner) : ")
         } else {
-            print("\nEnter coordinate for X : ")
+            console.write("\nEnter coordinate for X : ")
         }
-        val inputs = scanner.nextLine().split(",").map { it.trim().toInt() }
+        val inputs = console.read().split(",").map { it.trim().toInt() }
         firstTimeMove = false
-        val coordinate = Coordinate(inputs.first() - 1, inputs.last() - 1)
-        return coordinate
+        return Coordinate(inputs.first() - 1, inputs.last() - 1)
     }
 
     override val state: Cell.CellState = Cell.CellState.X
