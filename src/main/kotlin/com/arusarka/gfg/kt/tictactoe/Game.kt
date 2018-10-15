@@ -1,16 +1,22 @@
 package com.arusarka.gfg.kt.tictactoe
 
-class Game(private val board: TicTacToeBoard, players: List<Player>) {
+class Game(
+    private val board: TicTacToeBoard,
+    players: List<Player>,
+    val console: Console
+) {
     private var firstTime: Boolean = true
     private val player1 = players.first()
     private val player2 = players[1]
 
     private var currentPlayer: Player = player1
 
+    private val separator: String = "\n================\n"
+
     fun start() {
         while (board.isStillOpen()) {
             if (!firstTime)
-                println("\n================\n")
+                console.write(separator)
             println(board.toString())
             val nextMove = currentPlayer.getNextMove(board.grid)
             board.setCoordinate(currentPlayer.state, nextMove, this)
@@ -20,9 +26,9 @@ class Game(private val board: TicTacToeBoard, players: List<Player>) {
     }
 
     fun onWin() {
-        println("\n================\n")
-        println(board.toString())
-        println("\n${currentPlayer.name} (${currentPlayer.state}) has(have) won")
+        console.write(separator)
+        console.write(board.toString())
+        console.write("\n${currentPlayer.name} (${currentPlayer.state}) has(have) won")
     }
 
     private fun swapPlayers() {
@@ -42,6 +48,6 @@ fun main(args: Array<String>) {
     )
     val ticTacToeBoard = TicTacToeBoard(grid)
 
-    Game(ticTacToeBoard, listOf(HumanPlayer(), ComputerPlayer()))
+    Game(ticTacToeBoard, listOf(HumanPlayer(), ComputerPlayer()), Console())
         .start()
 }

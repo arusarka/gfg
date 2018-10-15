@@ -38,5 +38,11 @@ class Grid(cells: List<List<Cell>>) {
         cell.state = cellState
     }
 
-    fun isValidMove(coordinate: Coordinate): Boolean = rows[coordinate.x, coordinate.y].isEmpty()
+    fun isValidMove(coordinate: Coordinate): Boolean {
+        return coordinate.x <= 2 &&
+                coordinate.x >= 0 &&
+                coordinate.y <= 2 &&
+                coordinate.y >= 0 &&
+                rows[coordinate.x, coordinate.y].isEmpty()
+    }
 }

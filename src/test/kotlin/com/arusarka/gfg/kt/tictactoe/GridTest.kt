@@ -4,6 +4,7 @@ import com.arusarka.gfg.kt.tictactoe.Cell.CellState.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 
 @DisplayName("Grid")
@@ -19,7 +20,7 @@ class GridTest {
         grid = Grid(
             listOf(
                 rowOfCells(0, firstCellState = X),
-                rowOfCells(1, EMPTY, O, O),
+                rowOfCells(1, firstCellState = EMPTY, secondCellState = O, thirdCellState = O),
                 rowOfCells(2)
             )
         )
@@ -44,8 +45,32 @@ class GridTest {
         assertSame(X, grid[0, 1].state)
     }
 
-    @Test
-    fun `should be able to validate a move`() {
-        grid.isValidMove(Coordinate(0, 0))
+    @Nested
+    @DisplayName("validations")
+    inner class Validations {
+        @Test
+        fun `coordinate should be empty`() {
+            assertFalse(grid.isValidMove(Coordinate(0, 0)))
+        }
+
+        @Test
+        fun `coordinate row should not be greater than 2`() {
+            assertFalse(grid.isValidMove(Coordinate(3,0)))
+        }
+
+        @Test
+        fun `coordinate row should not be less than 0`() {
+            assertFalse(grid.isValidMove(Coordinate(-1,0)))
+        }
+
+        @Test
+        fun `coordinate column should not be greater than 2`() {
+            assertFalse(grid.isValidMove(Coordinate(0,3)))
+        }
+
+        @Test
+        fun `coordinate column should not be less than 0`() {
+            assertFalse(grid.isValidMove(Coordinate(0,-1)))
+        }
     }
 }
