@@ -20,7 +20,7 @@ class HumanPlayer(private val console: Console) : Player {
     }
 
     private fun getCoordinate(): Coordinate {
-        val scanner = Scanner(System.`in`)
+        Scanner(System.`in`)
         if (firstTimeMove) {
             console.write("\nEnter coordinate for X in the format x,y (with the comma in between 1,1 is the top left corner and 3,3 is the bottom right corner) : ")
         } else {
