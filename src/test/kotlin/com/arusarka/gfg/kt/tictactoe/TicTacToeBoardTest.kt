@@ -1,29 +1,29 @@
 package com.arusarka.gfg.kt.tictactoe
 
+import io.mockk.Runs
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
+import io.mockk.impl.annotations.RelaxedMockK
+import io.mockk.junit5.MockKExtension
+import io.mockk.just
+import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.junit.platform.runner.JUnitPlatform
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.Mockito.verify
-import org.mockito.junit.jupiter.MockitoExtension
 import kotlin.test.assertFalse
 
-@ExtendWith(MockitoExtension::class)
-@RunWith(JUnitPlatform::class)
+@ExtendWith(MockKExtension::class)
 @DisplayName("Tic tac toe board")
 class TicTacToeBoardTest {
 
-    @Mock
+    @RelaxedMockK
     lateinit var grid: Grid
 
-    @Mock
+    @MockK
     lateinit var path: Path
 
-    @Mock
+    @RelaxedMockK
     lateinit var game: Game
 
     lateinit var ticTacToeBoard: TicTacToeBoard
@@ -38,7 +38,7 @@ class TicTacToeBoardTest {
         val coordinate = Coordinate(1, 1)
         ticTacToeBoard.setCoordinate(Cell.CellState.X, coordinate, game)
 
-        verify(grid).setCellState(coordinate, Cell.CellState.X)
+        verify { grid.setCellState(coordinate, Cell.CellState.X) }
     }
 
     @Test
@@ -46,12 +46,12 @@ class TicTacToeBoardTest {
         val coordinate = Coordinate(0, 2)
         val row1 = Path(rowOfCells(0, Cell.CellState.X, Cell.CellState.X, Cell.CellState.X))
         val row2 = Path(rowOfCells(0, Cell.CellState.EMPTY, Cell.CellState.O, Cell.CellState.O))
-        Mockito.`when`(grid.pathsWithCoordinate(coordinate)).thenReturn(listOf(row1, row2))
+        every { grid.pathsWithCoordinate(coordinate) } returns listOf(row1, row2)
 
         ticTacToeBoard.setCoordinate(Cell.CellState.X, coordinate, game)
 
-        Mockito.verify(grid).pathsWithCoordinate(coordinate)
-        Mockito.verify(game).onWin()
+        verify { grid.pathsWithCoordinate(coordinate) }
+        verify { game.onWin() }
         assertFalse(ticTacToeBoard.isStillOpen())
     }
 }

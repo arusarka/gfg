@@ -1,25 +1,23 @@
 package com.arusarka.gfg.kt.ds
 
+import io.mockk.every
+import io.mockk.impl.annotations.MockK
+import io.mockk.junit5.MockKExtension
+import io.mockk.verify
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.junit.platform.runner.JUnitPlatform
-import org.junit.runner.RunWith
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.junit.jupiter.MockitoExtension
 import kotlin.test.assertEquals
 
-@ExtendWith(MockitoExtension::class)
-@RunWith(JUnitPlatform::class)
+@ExtendWith(MockKExtension::class)
 @DisplayName("A tree")
 class TreeTest {
 
-    @Mock
+    @MockK
     lateinit var leftTreeMock: Tree
 
-    @Mock
+    @MockK
     lateinit var rightTreeMock: Tree
 
     @Nested
@@ -41,14 +39,14 @@ class TreeTest {
 
         @Test
         fun `should be 1 + greater of the two subtrees`() {
-            Mockito.`when`(leftTreeMock.height()).thenReturn(2)
-            Mockito.`when`(rightTreeMock.height()).thenReturn(5)
+            every { leftTreeMock.height() } returns 2
+            every { rightTreeMock.height() } returns 5
 
             val tree = Tree(42, leftTreeMock, rightTreeMock)
 
             assertEquals(6, tree.height())
-            Mockito.verify(leftTreeMock).height()
-            Mockito.verify(rightTreeMock).height()
+            verify { leftTreeMock.height() }
+            verify { rightTreeMock.height() }
         }
     }
 }
