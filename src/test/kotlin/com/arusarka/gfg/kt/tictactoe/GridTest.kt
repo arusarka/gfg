@@ -1,6 +1,6 @@
 package com.arusarka.gfg.kt.tictactoe
 
-import com.arusarka.gfg.kt.tictactoe.Cell.CellState.*
+import com.arusarka.gfg.kt.tictactoe.CellState.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
@@ -55,22 +55,37 @@ class GridTest {
 
         @Test
         fun `coordinate row should not be greater than 2`() {
-            assertFalse(grid.isValidMove(Coordinate(3,0)))
+            assertFalse(grid.isValidMove(Coordinate(3, 0)))
         }
 
         @Test
         fun `coordinate row should not be less than 0`() {
-            assertFalse(grid.isValidMove(Coordinate(-1,0)))
+            assertFalse(grid.isValidMove(Coordinate(-1, 0)))
         }
 
         @Test
         fun `coordinate column should not be greater than 2`() {
-            assertFalse(grid.isValidMove(Coordinate(0,3)))
+            assertFalse(grid.isValidMove(Coordinate(0, 3)))
         }
 
         @Test
         fun `coordinate column should not be less than 0`() {
-            assertFalse(grid.isValidMove(Coordinate(0,-1)))
+            assertFalse(grid.isValidMove(Coordinate(0, -1)))
+        }
+    }
+
+    @Nested
+    @DisplayName("toString")
+    inner class ToString {
+        @Test
+        fun `should be able to print a grid`() {
+            val gridString: String = "X| | \n" +
+                    "_|_|_\n" +
+                    " |O|O\n" +
+                    "_|_|_\n" +
+                    " | | "
+
+            assertEquals(gridString, grid.toString())
         }
     }
 }

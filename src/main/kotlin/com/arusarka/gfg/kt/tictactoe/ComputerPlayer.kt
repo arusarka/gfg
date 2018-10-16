@@ -1,13 +1,13 @@
 package com.arusarka.gfg.kt.tictactoe
 
 import com.arusarka.gfg.kt.extensions.head
-import com.arusarka.gfg.kt.tictactoe.Cell.CellState.*
+import com.arusarka.gfg.kt.tictactoe.CellState.*
 
 class ComputerPlayer : Player{
     override val name: String
         get() = "Computer"
 
-    override val state: Cell.CellState = O
+    override val state: CellState = O
 
     override fun getNextMove(grid: Grid): Coordinate {
         val rowWin = winningCoordinate(state, grid.rows)
@@ -50,7 +50,7 @@ class ComputerPlayer : Player{
     private fun tryWinningPositionWithout(
         exceptions: List<Coordinate>,
         grid: Grid,
-        cellState: Cell.CellState
+        cellState: CellState
     ): Coordinate? {
         grid.emptyCells()
             .filter { !exceptions.contains(it.position) }
@@ -64,7 +64,7 @@ class ComputerPlayer : Player{
         return null
     }
 
-    private fun winningCoordinate(cellState: Cell.CellState, paths: List<Path>): Coordinate? {
+    private fun winningCoordinate(cellState: CellState, paths: List<Path>): Coordinate? {
         for (path in paths) {
             val winningPositionForCurrentPath = path.winningPositionFor(cellState)
             if (winningPositionForCurrentPath != null) return winningPositionForCurrentPath
@@ -74,7 +74,7 @@ class ComputerPlayer : Player{
 
     private fun possibleForkCoordinates(
         grid: Grid,
-        cellState: Cell.CellState
+        cellState: CellState
     ): List<Coordinate> {
         return grid.emptyCells().filter { cell ->
             val paths = grid.pathsWithCoordinate(cell.position)

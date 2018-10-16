@@ -1,6 +1,6 @@
 package com.arusarka.gfg.kt.tictactoe
 
-import com.arusarka.gfg.kt.tictactoe.Cell.CellState.*
+import com.arusarka.gfg.kt.tictactoe.CellState.*
 import org.junit.Before
 import org.junit.Test
 import kotlin.test.assertEquals

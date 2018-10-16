@@ -8,16 +8,16 @@ class Path(private val cells: List<Cell>) : AbstractList<Cell>() {
     override val size: Int
         get() = cells.size
 
-    fun winningPositionFor(cellState: Cell.CellState): Coordinate? {
+    fun winningPositionFor(cellState: CellState): Coordinate? {
         val winnable = (this.count { it.state == cellState } == 2)
-        return if (winnable) this.firstOrNull { it.state == Cell.CellState.EMPTY }?.position else null
+        return if (winnable) this.firstOrNull { it.state == CellState.EMPTY }?.position else null
     }
 
     fun containsCellWithCoordinate(coordinate: Coordinate): Boolean {
         return cells.map { it.position }.contains(coordinate)
     }
 
-    fun allCellsHaveState(cellState: Cell.CellState): Boolean {
+    fun allCellsHaveState(cellState: CellState): Boolean {
         return all { cell: Cell -> cell.state == cellState }
     }
 }

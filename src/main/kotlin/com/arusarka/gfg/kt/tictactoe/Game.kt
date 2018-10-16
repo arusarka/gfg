@@ -3,11 +3,12 @@ package com.arusarka.gfg.kt.tictactoe
 class Game(
     private val board: TicTacToeBoard,
     players: List<Player>,
-    val console: Console
+    private val console: Console
 ) {
     private var firstTime: Boolean = true
     private val player1 = players.first()
     private val player2 = players[1]
+    private var won = false
 
     private var currentPlayer: Player = player1
 
@@ -23,16 +24,28 @@ class Game(
             if (firstTime) firstTime = false
             swapPlayers()
         }
+        if (!won) onDraw()
     }
 
     fun onWin() {
-        console.write(separator)
-        console.write(board.toString())
-        console.write("\n${currentPlayer.name} (${currentPlayer.state}) has(have) won")
+        with(console) {
+            write(separator)
+            write(board.toString())
+            write("\n${currentPlayer.name} (${currentPlayer.state}) has(have) won")
+        }
+        won = true
     }
 
     private fun swapPlayers() {
         currentPlayer = if (currentPlayer == player1) player2 else player1
+    }
+
+    private fun onDraw() {
+        with(console) {
+            write(separator)
+            write(board.toString())
+            write("\nIt's a draw!\n")
+        }
     }
 }
 

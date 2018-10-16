@@ -33,7 +33,7 @@ class Grid(cells: List<List<Cell>>) {
         return rows.joinToString("\n_|_|_\n") { row -> row.joinToString("|") }
     }
 
-    fun setCellState(coordinate: Coordinate, cellState: Cell.CellState) {
+    fun setCellState(coordinate: Coordinate, cellState: CellState) {
         val cell = rows[coordinate.x, coordinate.y]
         cell.state = cellState
     }

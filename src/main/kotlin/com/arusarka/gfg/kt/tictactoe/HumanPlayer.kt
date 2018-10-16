@@ -31,5 +31,5 @@ class HumanPlayer(private val console: Console) : Player {
         return Coordinate(inputs.first() - 1, inputs.last() - 1)
     }
 
-    override val state: Cell.CellState = Cell.CellState.X
+    override val state: CellState = CellState.X
 }

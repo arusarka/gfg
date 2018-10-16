@@ -11,7 +11,7 @@ class TicTacToeBoard(val grid: Grid) {
         return !winningMoveMade && grid.emptyCells().isNotEmpty()
     }
 
-    fun setCoordinate(cellState: Cell.CellState, coordinate: Coordinate, game: Game) {
+    fun setCoordinate(cellState: CellState, coordinate: Coordinate, game: Game) {
         grid.setCellState(coordinate, cellState)
 
         val pathsWithCoordinate = grid.pathsWithCoordinate(coordinate)

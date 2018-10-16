@@ -13,13 +13,13 @@ class PathTest {
         val path =
             Path(
                 listOf(
-                    Cell(0, 0, Cell.CellState.X),
-                    Cell(0, 1, Cell.CellState.O),
-                    Cell(0, 2, Cell.CellState.EMPTY)
+                    Cell(0, 0, CellState.X),
+                    Cell(0, 1, CellState.O),
+                    Cell(0, 2, CellState.EMPTY)
                 )
             )
 
-        assertNull(path.winningPositionFor(Cell.CellState.O))
+        assertNull(path.winningPositionFor(CellState.O))
     }
 
     @Test
@@ -27,13 +27,13 @@ class PathTest {
         val path =
             Path(
                 listOf(
-                    Cell(0, 0, Cell.CellState.X),
-                    Cell(0, 1, Cell.CellState.EMPTY),
-                    Cell(0, 2, Cell.CellState.X)
+                    Cell(0, 0, CellState.X),
+                    Cell(0, 1, CellState.EMPTY),
+                    Cell(0, 2, CellState.X)
                 )
             )
 
-        assertEquals(Coordinate(0, 1), path.winningPositionFor(Cell.CellState.X))
+        assertEquals(Coordinate(0, 1), path.winningPositionFor(CellState.X))
     }
 
     @Nested

@@ -36,19 +36,19 @@ class TicTacToeBoardTest {
     @Test
     fun `should be able to set a coordinate in the grid with a cell state`() {
         val coordinate = Coordinate(1, 1)
-        ticTacToeBoard.setCoordinate(Cell.CellState.X, coordinate, game)
+        ticTacToeBoard.setCoordinate(CellState.X, coordinate, game)
 
-        verify { grid.setCellState(coordinate, Cell.CellState.X) }
+        verify { grid.setCellState(coordinate, CellState.X) }
     }
 
     @Test
     fun `should know a winning move after setting a cell's state`() {
         val coordinate = Coordinate(0, 2)
-        val row1 = Path(rowOfCells(0, Cell.CellState.X, Cell.CellState.X, Cell.CellState.X))
-        val row2 = Path(rowOfCells(0, Cell.CellState.EMPTY, Cell.CellState.O, Cell.CellState.O))
+        val row1 = Path(rowOfCells(0, CellState.X, CellState.X, CellState.X))
+        val row2 = Path(rowOfCells(0, CellState.EMPTY, CellState.O, CellState.O))
         every { grid.pathsWithCoordinate(coordinate) } returns listOf(row1, row2)
 
-        ticTacToeBoard.setCoordinate(Cell.CellState.X, coordinate, game)
+        ticTacToeBoard.setCoordinate(CellState.X, coordinate, game)
 
         verify { grid.pathsWithCoordinate(coordinate) }
         verify { game.onWin() }
