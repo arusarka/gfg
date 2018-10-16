@@ -6,4 +6,4 @@ Attempt at solving [geeks for geeks](https://www.geeksforgeeks.org) problems usi
 
 * Kotlin (duh!)
 * Junit 5
-* Mockito
+* [Mockk](https://mockk.io/)
