@@ -6,6 +6,11 @@ val <T> List<T>.tail: List<T>
 val <T> List<T>.head: T
     get() = first()
 
+fun <T> List<T>.second(): T {
+    if (this.size < 2) throw NoSuchElementException("List size is ${size}")
+    return this[1]
+}
+
 fun <T> List<List<T>>.tranpose(): List<List<T>> {
     return when (this.all { it.isEmpty() }) {
         true -> emptyList()

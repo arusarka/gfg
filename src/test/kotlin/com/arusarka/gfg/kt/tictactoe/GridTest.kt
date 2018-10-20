@@ -75,7 +75,7 @@ class GridTest {
     }
 
     @Nested
-    @DisplayName("toString")
+    @DisplayName("display")
     inner class ToString {
         @Test
         fun `should be able to print a grid`() {
